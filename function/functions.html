@@ -1,51 +1,112 @@
-<?php 
+<?php
 // Database connection
 $koneksi = mysqli_connect('localhost', 'root', '', 'iotalen');
 if (!$koneksi) {
     die('Gagal terhubung ke database: ' . mysqli_connect_error());
 }
 
-// Function to execute a query and return results as an array
-function query($query) {
-    global $koneksi;
-    $result = mysqli_query($koneksi, $query);
-    if (!$result) {
-        die('Query error: ' . mysqli_error($koneksi));
-    }
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
-}
-
-
-    
-
-// Retrieve the latest data from the sensor table
+// Function to retrieve the latest data from the sensor table
 function getLatestSensorData() {
     global $koneksi;
     $query = "SELECT asap, pir, led_merah, led_hijau, lcd FROM sensor ORDER BY date DESC LIMIT 1";
     $result = mysqli_query($koneksi, $query);
     if (!$result) {
-        error_log('Query error: ' . mysqli_error($koneksi)); // Log the error
-        return false; // Return false to handle it gracefully
+        error_log('Query error: ' . mysqli_error($koneksi));
+        return false;
     }
     return mysqli_fetch_assoc($result);
 }
 
-function getnama() {
+// Function to retrieve the username
+function getNama() {
     global $koneksi;
-    $query = "SELECT username FROM users ";
+    $query = "SELECT username FROM users";
     $result = mysqli_query($koneksi, $query);
     if (!$result) {
-        error_log('Query error: ' . mysqli_error($koneksi)); // Log the error
-        return false; // Return false to handle it gracefully
+        error_log('Query error: ' . mysqli_error($koneksi));
+        return false;
     }
     return mysqli_fetch_assoc($result);
 }
 
-
-
-
+// Retrieve data
+$sensorData = getLatestSensorData();
+$namaUser = getNama();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sensor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Sensor dan Pengguna</h1>
+
+    <!-- Menampilkan Data Sensor -->
+    <h2>Data Sensor Terbaru</h2>
+    <?php if ($sensorData): ?>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Nilai</th>
+            </tr>
+            <tr>
+                <td>Asap</td>
+                <td><?= htmlspecialchars($sensorData['asap']); ?></td>
+            </tr>
+            <tr>
+                <td>PIR</td>
+                <td><?= htmlspecialchars($sensorData['pir']); ?></td>
+            </tr>
+            <tr>
+                <td>LED Merah</td>
+                <td><?= htmlspecialchars($sensorData['led_merah']); ?></td>
+            </tr>
+            <tr>
+                <td>LED Hijau</td>
+                <td><?= htmlspecialchars($sensorData['led_hijau']); ?></td>
+            </tr>
+            <tr>
+                <td>LCD</td>
+                <td><?= htmlspecialchars($sensorData['lcd']); ?></td>
+            </tr>
+        </table>
+    <?php else: ?>
+        <p class="error">Tidak ada data sensor tersedia.</p>
+    <?php endif; ?>
+
+    <!-- Menampilkan Data Nama Pengguna -->
+    <h2>Nama Pengguna</h2>
+    <?php if ($namaUser): ?>
+        <p><?= htmlspecialchars($namaUser['username']); ?></p>
+    <?php else: ?>
+        <p class="error">Tidak ada data pengguna tersedia.</p>
+    <?php endif; ?>
+</body>
+</html>
