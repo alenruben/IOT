@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'function/functions.php'; 
-require 'function/loginRegister.php';
+require 'function/functions.html'; 
+require 'function/loginRegister.html';
 
 // Check cookies
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -222,7 +222,7 @@ if (isset($_POST['sign-up'])) {
                                         </div>
                                     </div>
                                     <div class="forgot-password">
-                                        <a href="lupapw.php">Forgot Password?</a>
+                                        <a href="lupapw.html">Forgot Password?</a>
                                     </div>
                                     <button type="submit" name="login" class="btn btn-primary" style="margin-top: 10px;">Login</button>
                                 </form>
