@@ -44,21 +44,22 @@
             }
         }
 
-        function validateForm() {
-            var password = document.querySelector('input[name="password-registrasi"]').value;
-            var passwordConfirm = document.querySelector('input[name="password-confirm"]').value;
+        function loginValidation() {
+            var email = document.querySelector('input[name="user-email"]').value;
+            var password = document.querySelector('input[name="password-login"]').value;
 
-            if (password.length < 8) {
-                alert("Password must be at least 8 characters long.");
-                return false;
+            // Simulating a valid email and password for demonstration purposes
+            var validEmail = "user@example.com";
+            var validPassword = "password123";
+
+            // Check if the email and password match the valid ones
+            if (email === validEmail && password === validPassword) {
+                // Login successful, redirect to dashboard
+                window.location.href = "dashboard.html"; // Redirect to the dashboard page
+            } else {
+                // Invalid credentials, show an alert
+                swal("Login Failed", "Incorrect email or password. Please try again.", "error");
             }
-
-            if (password !== passwordConfirm) {
-                alert("Passwords do not match.");
-                return false;
-            }
-
-            return true;
         }
     </script>
 </head>
@@ -67,67 +68,6 @@
         <div class="row justify-content-md-center mt-12">
             <div class="col-sm-8 border-box">
                 <div class="row">
-                    <!-- Sign Up Form -->
-                    <div class="col-sm-6 p-0">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="signup">
-                                    <h4 class="aktif">SIGN UP</h4>
-                                </div>
-                                <div>
-                                    <h4> / </h4>
-                                </div>
-                                <div class="login">
-                                    <h4>LOGIN</h4>
-                                </div>
-                                <div class="sub-title">Registrasi untuk gunakan Smart Detector-Rokok</div>
-                            </div>
-                            <div class="icon-user">
-                                <h4 class="fa fa-user"></h4>
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" onsubmit="return validateForm()">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                        </div>
-                                        <input type="text" name="email-registrasi" class="form-control" placeholder="Email" required>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        </div>
-                                        <input type="text" name="username-registrasi" class="form-control" placeholder="Username" required>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                        </div>
-                                        <input type="password" name="password-registrasi" id="password-registrasi" class="form-control" placeholder="Password" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" onclick="togglePassword('password-registrasi', 'eye1')">
-                                                <i class="fa fa-eye" id="eye1"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                        </div>
-                                        <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Confirm Password" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" onclick="togglePassword('password-confirm', 'eye2')">
-                                                <i class="fa fa-eye" id="eye2"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <button type="submit" name="sign-up" class="btn btn-primary">Sign Up</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="img"></div>
-                    </div>
-
                     <!-- Login Form -->
                     <div class="col-sm-6 p-0">
                         <div class="card">
@@ -147,7 +87,7 @@
                                 <h4 class="fa fa-user"></h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST">
+                                <form onsubmit="event.preventDefault(); loginValidation();">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -168,7 +108,7 @@
                                     <div class="forgot-password">
                                         <a href="lupapw.html">Forgot Password?</a>
                                     </div>
-                                    <button type="submit" name="login" class="btn btn-primary mt-3">Login</button>
+                                    <button type="submit" class="btn btn-primary mt-3">Login</button>
                                 </form>
                             </div>
                         </div>
