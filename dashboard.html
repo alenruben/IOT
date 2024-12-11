@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/icon.png">
+    <title>Smart Detector Rokok - Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styler.css?v=1.0">
+    <link rel="stylesheet" href="css/dashboard.css?v=1.0">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="js/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">
+        <img src="img/icon.png" width="25px" height="25px" class="float-left logo-fav">
+        <h3 class="text-secondary font-weight-bold float-left logo">Smart</h3>
+        <h3 class="text-secondary float-left logo2">Detector Rokok</h3>
+        <div class="logout" style="text-align: right; padding-top: 0px;">
+            <a href="logout.php" class="btn btn-primary">
+                <h7>Logout</h7>
+            </a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li class="rentang">
+                    <img src="img/user.png" class="img-fluid profile float-left" width="60px">
+                    <h5 class="admin" id="username"></h5> <!-- Username will be filled by JavaScript -->
+                    <div class="online online2">
+                        <p class="float-right ontext">Online</p>
+                        <div class="on float-right"></div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content khusus">
+        <div class="konten khusus2">
+            <div class="konten_dalem khusus3">
+                <h2 class="heade" style="color: #4b4f58;">Dashboard</h2>
+                <hr style="margin-top: -2px;">
+                <div class="container" id="container" style="border: none;">
+                    <div class="row tampilCardview" id="row">
+                        <!-- Card 1: Asap -->
+                        <div class="col-md-6 jarak"> 
+                            <div class="card card-stats" style="background: #98afc7;">
+                                <div class="card-body" style="padding: 20px;">
+                                    <div class="row">
+                                        <div class="col-5 text-center">
+                                            <img src="img/mq.jpg" width="50" height="50" style="vertical-align: middle; border-radius: 50%;">
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center tulisan" >
+                                            <div class="numbers" id="asap">
+                                                <p class="card-category" style="color: #2c3e50; font-weight: bold;"> Status Sensor MQ-2</p>
+                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;" id="sensorAsap">Loading...</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: PIR Sensor -->
+                        <div class="col-md-6 jarak" style="margin-bottom: 20px;"> 
+                            <div class="card card-stats" style="background: #98afc7;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5 text-center">
+                                            <img src="img/pir1.png" width="50" height="50" style="vertical-align: middle; border-radius: 50%;">
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center tulisan">
+                                            <div class="numbers">
+                                                <p class="card-category" style="color: #2c3e50; font-weight: bold;">Sensor PIR</p>
+                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;" id="sensorPIR">Loading...</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100"></div> <!-- Ensures the next card is below -->
+                        <!-- Card 3: LED Status -->
+                        <div class="col-md-6 jarak" style="margin-top: 20px;"> 
+                            <div class="card card-stats" style="background: #98afc7;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5 text-center">
+                                            <img src="img/lampu.gif" width="100" height="100" style="vertical-align: middle; border-radius: 50%;">
+                                            <p></p>
+                                            <div>
+                                                <div id="ledMerah" class="led-indicator" style="vertical-align: middle;"></div>
+                                                <div class="led-text"></div>
+                                            </div>
+                                            <p></p>
+                                            <div>
+                                                <div id="ledHijau" class="led-indicator"></div>
+                                                <div class="led-status"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center tulisan">
+                                            <div class="numbers">
+                                                <p class="card-category" style="color: #2c3e50; font-weight: bold;">Tampilan LED</p>
+                                                <div class="led-status">
+                                                    <div class="led-text" style="color: #2c3e50; font-weight: bold;" id="ledStatusText">Loading...</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End of row -->
+                </div> <!-- End of container -->
+            </div> <!-- End of konten_dalem -->
+        </div> <!-- End of konten -->
+    </div> <!-- End of main-content -->
+
+    <script>
+    // Fetching data (this could be from an API)
+    function fetchSensorData() {
+        // This is just an example, replace with your actual API endpoint
+        fetch('/getSensorData') // Your API URL
+            .then(response => response.json())
+            .then(data => {
+                // Update the username (assuming it's part of the response)
+                document.getElementById('username').textContent = data.username;
+
+                // Update the sensor data
+                document.getElementById('sensorAsap').textContent = data.asap;
+                document.getElementById('sensorPIR').textContent = data.pir;
+
+                // LED statuses
+                document.getElementById('ledMerah').className = data.led_merah === 'ON' ? 'led-red-on' : 'led-red-off';
+                document.getElementById('ledHijau').className = data.led_hijau === 'ON' ? 'led-green-on' : 'led-green-off';
+                document.getElementById('ledStatusText').textContent = data.led_merah;
+            })
+            .catch(error => console.error('Error fetching sensor data:', error));
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', fetchSensorData);
+    </script>
+</body>
+</html>
