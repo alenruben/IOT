@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +69,69 @@
         <div class="row justify-content-md-center mt-12">
             <div class="col-sm-8 border-box">
                 <div class="row">
+
+                    <div class="col-sm-6 p-0">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="signup">
+                                    <h4 class="aktif">SIGN UP</h4>
+                                </div>
+                                <div>
+                                    <h4> / </h4>
+                                </div>
+                                <div class="login">
+                                    <h4>LOGIN</h4>
+                                </div>
+                                <div class="sub-title">Registrasi untuk gunakan Smart Detector-Rokok</div>
+                            </div>
+                            <div class="icon-user">
+                                <h4 class="fa fa-user"></h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" onsubmit="return validateForm()">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <input type="text" name="email-registrasi" class="form-control" placeholder="Email" autocomplete="off" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        </div>
+                                        <input type="text" name="username-registrasi" class="form-control" placeholder="Username" autocomplete="off" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" name="password-registrasi" id="password-registrasi" class="form-control" placeholder="Password" autocomplete="off" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" onclick="togglePassword('password-registrasi', 'eye1')">
+                                                <i class="fa fa-eye" id="eye1"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Confirm password" autocomplete="off" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" onclick="togglePassword('password-confirm', 'eye2')">
+                                                <i class="fa fa-eye" id="eye2"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" name="sign-up" class="btn btn-primary">Sign up</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="img"></div>
+                    </div>
+                    
                     <!-- Login Form -->
                     <div class="col-sm-6 p-0">
                         <div class="card">
