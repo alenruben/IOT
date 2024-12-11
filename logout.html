@@ -2,10 +2,12 @@
 
 // Attach a click event to the logout button
 document.getElementById("logoutButton").addEventListener("click", function () {
-    // Clear sessionStorage or localStorage
-    sessionStorage.clear(); // Clear session-based data
-    localStorage.clear();  // Clear local persistent data
+    // Clear sessionStorage: removes session-based data
+    sessionStorage.clear();
 
-    // Redirect to index.html
+    // Clear localStorage: removes locally stored persistent data
+    localStorage.clear();
+
+    // Redirect to index.html: navigate the user to the homepage or login page
     window.location.href = "index.html";
 });
