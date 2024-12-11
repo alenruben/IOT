@@ -106,7 +106,7 @@ updateLEDStatus(true);
                 });
                 </script>
                 <!-- Dashboard Link -->
-                <a href="dashboard.php" style="text-decoration: none;">
+                <a href="dashboard.html" style="text-decoration: none;">
                     <li>
                         <div>
                             <span class="fas fa-tachometer-alt"></span>
@@ -115,7 +115,7 @@ updateLEDStatus(true);
                     </li>
                 </a>
                 <!-- Realtime Database -->
-                <a href="monitoring.php" style="text-decoration: none;">
+                <a href="monitoring.html" style="text-decoration: none;">
                     <li >
                         <div>
                             <span><i class="fas fa-clipboard-list"></i></span>
@@ -124,7 +124,7 @@ updateLEDStatus(true);
                     </li>
                 </a>
                 <!-- Laporan Section -->
-                <a href="laporan.php" style="text-decoration: none;">
+                <a href="laporan.html" style="text-decoration: none;">
                     <li>
                         <div>
                             <span><i class="fas fa-clipboard-list"></i></span>
@@ -171,7 +171,7 @@ updateLEDStatus(true);
                                         <div class="col-7 d-flex align-items-center tulisan" >
                                             <div class="numbers" id="asap">
                                                 <p class="card-category" style="color: #2c3e50; font-weight: bold;"> Status Sensor MQ-2</p>
-                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;">343</h4>
+                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;" id="sensorAsap">343</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@ updateLEDStatus(true);
                                         <div class="col-7 d-flex align-items-center tulisan">
                                             <div class="numbers">
                                                 <p class="card-category" style="color: #2c3e50; font-weight: bold;">Sensor PIR</p>
-                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;" >Ada gerakan terdeteksi</h4>
+                                                <h4 class="card-title" style="color: #34495e; font-weight: bold;" id="sensorPIR">Ada gerakan terdeteksi</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -222,7 +222,7 @@ updateLEDStatus(true);
                     <div class="numbers">
                         <p class="card-category" style="color: #2c3e50; font-weight: bold;">Tampilan LED</p>
                         <div class="led-status">
-                            <div class="led-text" style="color: #2c3e50; font-weight: bold;">ON</div>
+                            <div class="led-text" style="color: #2c3e50; font-weight: bold;" id="ledStatusText">ON</div>
                         </div>
                     </div>
                 </div>
