@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign-Up | Smart Detector Rokok</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+    body {
+      background: url('https://via.placeholder.com/1920x1080.png') no-repeat center center;
+      background-size: cover;
+      font-family: "Roboto", sans-serif;
+    }
+    .img {
+      background: url('https://via.placeholder.com/600x800.png');
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-md-center mt-5">
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-6 p-0">
+            <div class="card">
+              <div class="img"></div>
+            </div>
+          </div>
+          <div class="col-sm-6 p-0">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>SIGN UP</h4>
+                <p>Registrasi untuk menggunakan Smart Detector - Rokok</p>
+              </div>
+              <div class="card-body">
+                <form id="signUpForm">
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Masukkan username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi password" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Event listener untuk form registrasi
+    document.getElementById("signUpForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Ambil data dari form
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Validasi sederhana
+      if (password !== confirmPassword) {
+        swal("Gagal", "Password tidak cocok!", "error");
+        return;
+      }
+
+      // Data yang akan dikirim ke server
+      const data = { email, username, password, confirmPassword };
+
+      try {
+        // Kirim data ke server menggunakan Fetch API
+        const response = await fetch("http://localhost/register.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          swal("Berhasil", "Akun anda berhasil didaftarkan!", "success").then(() => {
+            window.location.href = "login.html";
+          });
+        } else {
+          swal("Gagal", result.message, "error");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        swal("Gagal", "Terjadi kesalahan saat registrasi.", "error");
+      }
+    });
+  </script>
+</body>
+</html>
