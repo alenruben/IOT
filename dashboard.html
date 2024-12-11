@@ -22,6 +22,50 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Example function to toggle LEDs
+function updateLEDStatus(isRedOn) {
+    if (isRedOn) {
+        // Red LED is ON, Green LED is OFF
+        document.getElementById("ledMerah").classList.add("active");
+        document.getElementById("ledHijau").classList.remove("active");
+        document.getElementById("ledStatusText").innerText = "Led Merah ON";
+    } else {
+        // Red LED is OFF, Green LED is ON
+        document.getElementById("ledMerah").classList.remove("active");
+        document.getElementById("ledHijau").classList.add("active");
+        document.getElementById("ledStatusText").innerText = "Led Hijau ON";
+    }
+}
+
+// Example usage: turn on red LED and turn off green LED
+updateLEDStatus(true);
+
+    </script>
+    <style>
+        /* Define LED circles */
+.led-indicator {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px auto;
+}
+
+.red {
+    background-color: red;  /* Red LED */
+}
+
+.green {
+    background-color: transparent;
+    border: 1px solid green;  /* Inactive green LED (grayish) */
+}
+
+/* If the green LED is active, change its color */
+.green.active {
+    background-color: green;  /* Active green LED */
+}
+
+    </style>
 </head>
 <body>
     <div class="header">
@@ -38,14 +82,73 @@
     <div class="sidebar">
         <nav>
             <ul>
+                <!-- User Profile Section -->
                 <li class="rentang">
                     <img src="img/user.png" class="img-fluid profile float-left" width="60px">
-                    <h5 class="admin" id="username">Admin</h5> <!-- Username will be filled by JavaScript -->
+                    <h5 class="admin">Admin</h5>
                     <div class="online online2">
                         <p class="float-right ontext">Online</p>
                         <div class="on float-right"></div>
                     </div>
                 </li>
+                
+                <!-- Fungsi Slide -->
+                <script>
+                $(document).ready(function(){
+                    $("#flip").click(function(){
+                        $("#panel").slideToggle("medium");
+                        $("#panel2").slideToggle("medium");
+                    });
+                    $("#flip2").click(function(){
+                        $("#panel3").slideToggle("medium");
+                        $("#panel4").slideToggle("medium");
+                    });
+                });
+                </script>
+                <!-- Dashboard Link -->
+                <a href="dashboard.php" style="text-decoration: none;">
+                    <li>
+                        <div>
+                            <span class="fas fa-tachometer-alt"></span>
+                            <span>Dashboard</span>
+                        </div>
+                    </li>
+                </a>
+                <!-- Realtime Database -->
+                <a href="monitoring.php" style="text-decoration: none;">
+                    <li >
+                        <div>
+                            <span><i class="fas fa-clipboard-list"></i></span>
+                            <span>Monitoring</span>
+                        </div>
+                    </li>
+                </a>
+                <!-- Laporan Section -->
+                <a href="laporan.php" style="text-decoration: none;">
+                    <li>
+                        <div>
+                            <span><i class="fas fa-clipboard-list"></i></span>
+                            <span>Laporan</span>
+                        </div>
+                    </li>
+                </a>
+
+                <!-- change icon -->
+                <script>
+                $(".klik").click(function () {
+                    $(this).find('i').toggleClass('fa-caret-up fa-caret-right');
+                    if ($(".klik").not(this).find("i").hasClass("fa-caret-right")) {
+                        $(".klik").not(this).find("i").toggleClass('fa-caret-up fa-caret-right');
+                    }
+                });
+                $(".klik2").click(function () {
+                    $(this).find('i').toggleClass('fa-caret-up fa-caret-right');
+                    if ($(".klik2").not(this).find("i").hasClass("fa-caret-right")) {
+                        $(".klik2").not(this).find("i").toggleClass('fa-caret-up fa-caret-right');
+                    }
+                });
+                </script>
+                <!-- change icon -->
             </ul>
         </nav>
     </div>
@@ -95,37 +198,39 @@
                             </div>
                         </div>
 
-                        <div class="w-100"></div> <!-- Ensures the next card is below -->
-                        <!-- Card 3: LED Status -->
-                        <div class="col-md-6 jarak" style="margin-top: 20px;"> 
-                            <div class="card card-stats" style="background: #98afc7;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-5 text-center">
-                                            <img src="img/lampu.gif" width="100" height="100" style="vertical-align: middle; border-radius: 50%;">
-                                            <p></p>
-                                            <div>
-                                                <div id="ledMerah" class="led-indicator" style="vertical-align: middle;"></div>
-                                                <div class="led-text"></div>
-                                            </div>
-                                            <p></p>
-                                            <div>
-                                                <div id="ledHijau" class="led-indicator"></div>
-                                                <div class="led-status"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-7 d-flex align-items-center tulisan">
-                                            <div class="numbers">
-                                                <p class="card-category" style="color: #2c3e50; font-weight: bold;">Tampilan LED</p>
-                                                <div class="led-status">
-                                                    <div class="led-text" style="color: #2c3e50; font-weight: bold;" id="ledStatusText">Led Merah ON</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!-- Card 3: LED Status -->
+<div class="col-md-6 jarak" style="margin-top: 20px;"> 
+    <div class="card card-stats" style="background: #98afc7;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5 text-center">
+                    <img src="img/lampu.gif" width="100" height="100" style="vertical-align: middle; border-radius: 50%;">
+                    <p></p>
+                    <div>
+                        <!-- Red LED Indicator (Active) -->
+                        <div id="ledMerah" class="led-indicator red" style="vertical-align: middle;"></div>
+                        <div class="led-text"></div>
+                    </div>
+                    <p></p>
+                    <div>
+                        <!-- Green LED Indicator (Inactive) -->
+                        <div id="ledHijau" class="led-indicator green"></div>
+                        <div class="led-status"></div>
+                    </div>
+                </div>
+                <div class="col-7 d-flex align-items-center tulisan">
+                    <div class="numbers">
+                        <p class="card-category" style="color: #2c3e50; font-weight: bold;">Tampilan LED</p>
+                        <div class="led-status">
+                            <div class="led-text" style="color: #2c3e50; font-weight: bold;" id="ledStatusText">Led Merah ON</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                         <div class="col-md-6 jarak" style="margin-top: 20px;"> 
                             <div class="card card-stats" style="background: #98afc7;">
@@ -151,30 +256,5 @@
         </div> <!-- End of konten -->
     </div> <!-- End of main-content -->
 
-    <script>
-    // Fetching data (this could be from an API)
-    function fetchSensorData() {
-        // This is just an example, replace with your actual API endpoint
-        fetch('/getSensorData') // Your API URL
-            .then(response => response.json())
-            .then(data => {
-                // Update the username (assuming it's part of the response)
-                document.getElementById('username').textContent = data.username;
-
-                // Update the sensor data
-                document.getElementById('sensorAsap').textContent = data.asap;
-                document.getElementById('sensorPIR').textContent = data.pir;
-
-                // LED statuses
-                document.getElementById('ledMerah').className = data.led_merah === 'ON' ? 'led-red-on' : 'led-red-off';
-                document.getElementById('ledHijau').className = data.led_hijau === 'ON' ? 'led-green-on' : 'led-green-off';
-                document.getElementById('ledStatusText').textContent = data.led_merah;
-            })
-            .catch(error => console.error('Error fetching sensor data:', error));
-    }
-
-    // Call the function on page load
-    document.addEventListener('DOMContentLoaded', fetchSensorData);
-    </script>
-</body>
+    </body>
 </html>
