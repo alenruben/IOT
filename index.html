@@ -1,12 +1,12 @@
 <?php 
     session_start();
-    require "function/functions.php";
+    require "function/functions.html";
     
     if ( isset($_SESSION["login"]) ) {
-        header("Location: dashboard.php");
+        header("Location: dashboard.html");
         exit;
     } elseif(isset($_COOKIE['login'])) {
-        header("Location: dashboard.php");
+        header("Location: dashboard.html");
         exit;
     }
 ?>
