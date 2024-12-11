@@ -1,44 +1,11 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const app = express();
+// Logout button logic in JavaScript
 
-// Middleware setup
-app.use(cookieParser());
-app.use(
-  session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// Attach a click event to the logout button
+document.getElementById("logoutButton").addEventListener("click", function () {
+    // Clear sessionStorage or localStorage
+    sessionStorage.clear(); // Clear session-based data
+    localStorage.clear();  // Clear local persistent data
 
-app.get('/logout', (req, res) => {
-  // Check if the user is logged in
-  if (!req.session.login) {
-    return res.redirect('/login');
-  }
-
-  // Destroy the session
-  req.session.destroy(err => {
-    if (err) {
-      console.error('Error destroying session:', err);
-      return res.status(500).send('An error occurred while logging out.');
-    }
-
-    // Clear cookies
-    res.clearCookie('login');
-    res.clearCookie('level');
-    res.clearCookie('id');
-    res.clearCookie('key');
-
-    // Redirect to the login page
-    res.redirect('/index');
-  });
-});
-
-// Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+    // Redirect to index.html
+    window.location.href = "index.html";
 });
