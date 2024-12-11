@@ -3,7 +3,7 @@
 // Fungsi untuk registrasi pengguna
 async function registerUser(data) {
     try {
-        const response = await fetch('register.php', {
+        const response = await fetch('register.html', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ async function loginUser(data) {
 
         if (result.success) {
             Swal.fire('Sukses', 'Login berhasil!', 'success').then(() => {
-                window.location.href = 'dashboard.php';
+                window.location.href = 'dashboard.html';
             });
         } else {
             Swal.fire('Gagal', result.message, 'error');
